@@ -1,0 +1,20 @@
+{
+  "name": "bun-react-template",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "bun --watch src/frontend.tsx",
+    "build": "bun build ./src/frontend.tsx --outdir=dist --sourcemap --target=bun --minify",
+    "start": "bun src/frontend.tsx"
+  },
+  "dependencies": {
+    "ink": "^6.8.0",
+    "jimp": "^1.6.0",
+    "react": "^19"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/react": "^19.2.14"
+  }
+}
