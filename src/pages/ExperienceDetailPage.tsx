@@ -1,5 +1,7 @@
 import { Box, Text, useInput } from "ink";
-import { AppLayout } from "./AppLayout";
+
+import { AppLayout } from "@/layout/AppLayout";
+import { DIVIDER } from "@/constants";
 
 type Experience = {
   company: string;
@@ -20,8 +22,6 @@ export function ExperienceDetailPage({ experience, onBack }: ExperienceDetailPag
   useInput((_, key) => {
     if (key.escape) onBack();
   });
-
-  const DIVIDER = "─────────────────────────────────────────";
 
   return (
     <AppLayout

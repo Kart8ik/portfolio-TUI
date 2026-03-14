@@ -1,7 +1,6 @@
 import { Box, Text } from "ink";
 
 export type AppLayoutProps = {
-  /** Page title - plain bold text */
   title?: string;
   leftContent: React.ReactNode;
   footer: React.ReactNode;
@@ -22,7 +21,9 @@ export function AppLayout({
       <Box flexDirection="column" width={leftWidth}>
         {title && (
           <Box flexDirection="column">
-            <Text bold color="cyan">{title}</Text>
+            <Text bold color="cyan">
+              {title}
+            </Text>
           </Box>
         )}
         <Box flexDirection="column" gap={1}>

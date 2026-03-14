@@ -1,10 +1,11 @@
 import { Box, Text, useInput } from "ink";
 import { useState } from "react";
-import { AppLayout } from "./AppLayout";
-import { SelectableList } from "./SelectableList";
-import { SkillsDetailPage } from "./SkillsDetailPage";
+
+import { AppLayout } from "@/layout/AppLayout";
+import { SelectableList } from "@/components/SelectableList";
+import { SkillsDetailPage } from "@/pages/SkillsDetailPage";
 // @ts-ignore
-import { skills } from "../data/SkillsData.jsx";
+import { skills } from "@data/SkillsData.jsx";
 
 const titleCase = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 

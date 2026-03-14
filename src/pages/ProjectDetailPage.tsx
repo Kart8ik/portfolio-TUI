@@ -1,5 +1,7 @@
 import { Box, Text, useInput } from "ink";
-import { AppLayout } from "./AppLayout";
+
+import { AppLayout } from "@/layout/AppLayout";
+import { DIVIDER } from "@/constants";
 
 type Project = {
   name: string;
@@ -19,8 +21,6 @@ export function ProjectDetailPage({ project, onBack }: ProjectDetailPageProps) {
   useInput((_, key) => {
     if (key.escape) onBack();
   });
-
-  const DIVIDER = "─────────────────────────────────────────";
 
   return (
     <AppLayout

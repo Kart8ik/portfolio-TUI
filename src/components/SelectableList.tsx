@@ -1,5 +1,7 @@
 import { Box, Text } from "ink";
 
+import { DIVIDER } from "@/constants";
+
 export type SelectableListItem = {
   title: string;
   description: string;
@@ -10,8 +12,6 @@ type SelectableListProps = {
   items: SelectableListItem[];
   selectedIndex: number;
 };
-
-const DIVIDER = "─────────────────────────────────────────";
 
 /**
  * Presentational list. Parent handles keyboard (↑↓ enter) and passes selectedIndex.

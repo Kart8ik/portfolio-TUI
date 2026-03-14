@@ -1,8 +1,10 @@
 import { Box, Text, useInput } from "ink";
 import { useState } from "react";
-import { AppLayout } from "./AppLayout";
-import { SelectableList } from "./SelectableList";
+
 import open from "open";
+
+import { AppLayout } from "@/layout/AppLayout";
+import { SelectableList } from "@/components/SelectableList";
 
 const socialItems = [
   { title: "GitHub", value: "https://github.com/Kart8ik", url: "https://github.com/Kart8ik" },

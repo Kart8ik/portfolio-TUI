@@ -1,5 +1,7 @@
 import { Box, Text, useInput } from "ink";
-import { AppLayout } from "./AppLayout";
+
+import { AppLayout } from "@/layout/AppLayout";
+import { DIVIDER } from "@/constants";
 
 const titleCase = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 
@@ -17,8 +19,6 @@ export function SkillsDetailPage({
   useInput((_, key) => {
     if (key.escape) onBack();
   });
-
-  const DIVIDER = "─────────────────────────────────────────";
 
   return (
     <AppLayout

@@ -1,10 +1,14 @@
 import { useMemo, useState } from "react";
-import { IntroScreen } from "./IntroScreen";
-import { loadPortrait } from "./loadPortrait";
-import { ProjectsPage } from "./ProjectsPage";
-import { ExperiencePage } from "./ExperiencePage";
-import { SkillsPage } from "./SkillsPage";
-import { SocialPage } from "./SocialPage";
+
+import { loadPortrait } from "@/ascii/loadPortrait";
+import { IntroPage } from "@/pages/IntroPage";
+import { ExperiencePage } from "@/pages/ExperiencePage";
+import { ExperienceDetailPage } from "@/pages/ExperienceDetailPage";
+import { ProjectDetailPage } from "@/pages/ProjectDetailPage";
+import { ProjectsPage } from "@/pages/ProjectsPage";
+import { SkillsDetailPage } from "@/pages/SkillsDetailPage";
+import { SkillsPage } from "@/pages/SkillsPage";
+import { SocialPage } from "@/pages/SocialPage";
 
 const endpoints = ["Skills", "Projects", "Experience", "Socials"];
 
@@ -21,7 +25,7 @@ export function App() {
   }
 
   return (
-    <IntroScreen
+    <IntroPage
       portrait={portrait}
       endpoints={endpoints}
       selectedIndex={selectedIndex}

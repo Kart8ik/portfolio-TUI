@@ -1,32 +1,30 @@
 import { Box, Text, useInput } from "ink";
 import { useState } from "react";
-import { AppLayout } from "./AppLayout";
-import { SelectableList } from "./SelectableList";
-import { ProjectDetailPage } from "./ProjectDetailPage";
-// @ts-ignore
-import { projects } from "../data/ProjectsData.jsx";
 
-const listItems = projects.map((p: { name: string; description: string }) => ({
-  title: p.name,
-  description: p.description,
-  data: p,
+import { AppLayout } from "@/layout/AppLayout";
+import { SelectableList } from "@/components/SelectableList";
+import { ExperienceDetailPage } from "@/pages/ExperienceDetailPage";
+// @ts-ignore
+import { experience } from "@data/ExperienceData.jsx";
+
+const listItems = experience.map((e: { position: string; company: string; duration: string; location: string }) => ({
+  title: `${e.position} @ ${e.company}`,
+  description: `${e.duration} | ${e.location}`,
+  data: e,
 }));
 
-type ProjectsPageProps = {
+type ExperiencePageProps = {
   onBack: () => void;
 };
 
-export function ProjectsPage({ onBack }: ProjectsPageProps) {
+export function ExperiencePage({ onBack }: ExperiencePageProps) {
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const [openItem, setOpenItem] = useState<typeof projects[0] | null>(null);
+  const [openItem, setOpenItem] = useState<typeof experience[0] | null>(null);
 
   useInput((_, key) => {
     if (key.escape) {
-      if (openItem) {
-        setOpenItem(null);
-      } else {
-        onBack();
-      }
+      if (openItem) setOpenItem(null);
+      else onBack();
       return;
     }
     if (openItem) return;
@@ -37,8 +35,8 @@ export function ProjectsPage({ onBack }: ProjectsPageProps) {
 
   if (openItem) {
     return (
-      <ProjectDetailPage
-        project={openItem}
+      <ExperienceDetailPage
+        experience={openItem}
         onBack={() => setOpenItem(null)}
       />
     );
@@ -46,7 +44,7 @@ export function ProjectsPage({ onBack }: ProjectsPageProps) {
 
   return (
     <AppLayout
-      title="Projects"
+      title="Experience"
       leftContent={
         <Box flexDirection="column">
           <Box>
