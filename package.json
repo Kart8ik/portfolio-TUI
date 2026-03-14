@@ -7,12 +7,11 @@
   },
   "files": [
     "dist",
-    "src/ascii/portrait.txt",
     "README.md"
   ],
   "scripts": {
     "dev": "bun --watch src/frontend.tsx",
-    "build": "cross-env NODE_ENV=production bun build ./src/cli.ts --outdir dist --target=node --minify",
+    "build": "cross-env NODE_ENV=production bun build ./src/cli.ts --outdir dist --target=node --minify && bun -e \"Bun.write('dist/portrait.txt', Bun.file('src/ascii/portrait.txt'))\"",
     "start": "node dist/cli.js",
     "prepublishOnly": "bun run build"
   },
