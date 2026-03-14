@@ -111,7 +111,7 @@ const NavigationTabs = ({ endpoints, selectedIndex }: { endpoints: string[], sel
 const Footer = () => {
   return (
     <Box marginTop={1}>
-      <Text>← → to navigate, Ctrl+C to exit</Text>
+      <Text>[ ← → to navigate • Ctrl+C to exit ]</Text>
     </Box>
   );
 };
