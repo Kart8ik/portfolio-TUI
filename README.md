@@ -13,6 +13,22 @@ npx shrikarthik
 npm = https://www.npmjs.com/package/shrikarthik
 github = https://github.com/Kart8ik/portfolio-TUI
 
+## Terminal compatibility
+
+This CLI uses animated ANSI rendering and dense Unicode block characters for the portrait.
+
+For the best experience, run it in a modern terminal:
+
+* Windows Terminal
+* iTerm2
+* Warp
+* Kitty
+* Alacritty
+* GNOME Terminal
+
+The default macOS Terminal.app and some minimal SSH terminals may render the portrait incorrectly.
+
+
 ## Local development (if u wanna check out how it works)
 
 
