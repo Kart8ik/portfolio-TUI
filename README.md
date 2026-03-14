@@ -1,21 +1,34 @@
-# bun-react-template
+# shrikarthik
 
-To install dependencies:
+A clean terminal portfolio built with [React](https://react.dev) and [Ink](https://github.com/vadimdemedes/ink). Navigate projects, experience, skills, and socials from the CLI :)
+
+## Run it
+
+```bash
+npx shrikarthik
+```
+
+## Local development
+
+**Requirements:** [Bun](https://bun.sh)
 
 ```bash
 bun install
+bun run dev
 ```
 
-To start a development server:
+Build for production:
 
 ```bash
-bun dev
+bun run build
+bun run start
 ```
 
-To run for production:
+## Scripts
 
-```bash
-bun start
-```
-
-This project was created using `bun init` in bun v1.3.10. [Bun](https://bun.com) is a fast all-in-one JavaScript runtime.
+| Script | Command |
+|--------|---------|
+| `dev` | Run with hot reload |
+| `build` | Compile to `dist/cli.js` (Node target) |
+| `start` | Run built output |
+| `prepublishOnly` | Auto-runs before `npm publish` |
