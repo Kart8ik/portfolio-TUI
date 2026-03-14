@@ -2,13 +2,19 @@
 
 A clean terminal portfolio built with [React](https://react.dev) and [Ink](https://github.com/vadimdemedes/ink). Navigate projects, experience, skills, and socials from the CLI :)
 
-## Run it
+![Screenshot of shrikarthik terminal portfolio](./image.png)
+
+## Run this locally to see the portfolio
 
 ```bash
 npx shrikarthik
 ```
 
-## Local development
+npm = https://www.npmjs.com/package/shrikarthik
+github = https://github.com/Kart8ik/portfolio-TUI
+
+## Local development (if u wanna check out how it works)
+
 
 **Requirements:** [Bun](https://bun.sh)
 
