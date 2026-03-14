@@ -19,8 +19,13 @@ export const loadPortrait = (): string => {
   try {
     const portraitPath = join(__dirname, "portrait.txt");
     const raw = readFileSync(portraitPath, "utf8");
-    const normalized = raw.replace(/\r\n/g, "\n").replace(/\t/g, "    ");
-    return normalized.replace(/^\n+/, "").replace(/\n+$/, "");
+
+    // Normalize line endings only
+    const normalized = raw
+      .replace(/\r\n/g, "\n")
+      .replace(/\t/g, "    ");
+
+    return normalized;
   } catch {
     return fallbackPortrait;
   }

@@ -1,4 +1,48 @@
 import { Box, Text, useInput } from "ink";
+import { useEffect, useMemo, useState } from "react";
+
+const SHEEN_INTERVAL_MS = 135;
+
+/** Parse a portrait line into cells: {fg, bg, char} with original ANSI colors.
+ *  Preserves every character (including those without preceding ANSI). */
+function parsePortraitCells(line: string): Array<{ fg: { r: number; g: number; b: number }; bg: { r: number; g: number; b: number }; char: string }> {
+  const cells: Array<{ fg: { r: number; g: number; b: number }; bg: { r: number; g: number; b: number }; char: string }> = [];
+  const ansiRegex = /\x1b\[([0-9;]*)m/g;
+  let fg = { r: 128, g: 128, b: 128 };
+  let bg = { r: 0, g: 0, b: 0 };
+  let i = 0;
+  while (i < line.length) {
+    if (line[i] === "\x1b") {
+      ansiRegex.lastIndex = i;
+      const match = ansiRegex.exec(line);
+      if (match) {
+        const codes = match[1].split(";").map(Number);
+        for (let j = 0; j < codes.length - 4; j++) {
+          if (codes[j] === 38 && codes[j + 1] === 2) {
+            fg = { r: codes[j + 2], g: codes[j + 3], b: codes[j + 4] };
+          }
+          if (codes[j] === 48 && codes[j + 1] === 2) {
+            bg = { r: codes[j + 2], g: codes[j + 3], b: codes[j + 4] };
+          }
+        }
+        i = ansiRegex.lastIndex;
+        continue;
+      }
+    }
+    cells.push({ fg: { ...fg }, bg: { ...bg }, char: line[i] });
+    i++;
+  }
+  return cells;
+}
+
+/** Blend color toward white; t=0 keep original, t=1 full white */
+function blendTowardWhite(r: number, g: number, b: number, t: number): { r: number; g: number; b: number } {
+  return {
+    r: Math.round(r + (255 - r) * t),
+    g: Math.round(g + (255 - g) * t),
+    b: Math.round(b + (255 - b) * t),
+  };
+}
 
 type IntroPageProps = {
   portrait: string;
@@ -48,11 +92,42 @@ export function IntroPage({
   onMoveRight,
   onEnter,
 }: IntroPageProps) {
+  const [frame, setFrame] = useState(0);
   useInput((_, key) => {
     if (key.leftArrow) onMoveLeft();
     if (key.rightArrow) onMoveRight();
     if (key.return) onEnter();
   });
+
+  useEffect(() => {
+    const id = setInterval(() => setFrame((f) => f + 1), SHEEN_INTERVAL_MS);
+    return () => clearInterval(id);
+  }, []);
+
+  const parsedLines = useMemo(
+    () => portrait.split("\n").map(parsePortraitCells),
+    [portrait]
+  );
+  const width = Math.max(0, ...parsedLines.map((cells) => cells.length));
+  const framePosition = frame % (width + 30);
+
+  const buildSheenLine = (cells: ReturnType<typeof parsePortraitCells>, y: number): string => {
+    let out = "";
+    for (let x = 0; x < cells.length; x++) {
+      const { fg, bg, char } = cells[x];
+      if (char === " ") {
+        out += `\x1b[38;2;${fg.r};${fg.g};${fg.b}m\x1b[48;2;${bg.r};${bg.g};${bg.b}m${char}`;
+        continue;
+      }
+      const waveOffset = Math.sin(y / 5) * 2;
+      const bandCenter = framePosition - y + waveOffset;
+      const distance = Math.abs(x - bandCenter);
+      const sheenStrength = distance < 1 ? 1 : distance < 2 ? 0.5 : 0;
+      const { r, g, b } = blendTowardWhite(fg.r, fg.g, fg.b, sheenStrength);
+      out += `\x1b[38;2;${r};${g};${b}m\x1b[48;2;${bg.r};${bg.g};${bg.b}m${char}`;
+    }
+    return out;
+  };
 
   return (
     <Box flexDirection="column" padding={1}>
@@ -81,8 +156,10 @@ export function IntroPage({
           </Box>
         </Box>
         <Box marginLeft={4} flexDirection="column">
-          {portrait.split("\n").map((l, idx) => (
-            <Text key={idx}>{l.replace(/\s+$/, "")}</Text>
+          {parsedLines.map((cells, y) => (
+            <Box key={y}>
+              <Text wrap="truncate-end">{buildSheenLine(cells, y)}</Text>
+            </Box>
           ))}
         </Box>
       </Box>
