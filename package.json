@@ -1,6 +1,6 @@
 {
   "name": "shrikarthik",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "type": "module",
   "bin": {
     "shrikarthik": "dist/cli.js"
