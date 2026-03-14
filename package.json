@@ -11,7 +11,7 @@
   ],
   "scripts": {
     "dev": "bun --watch src/frontend.tsx",
-    "build": "cross-env NODE_ENV=production bun build ./src/cli.ts --outdir dist --target=node --minify --external=react-devtools-core --define:process.env.NODE_ENV=\"production\"",
+    "build": "cross-env NODE_ENV=production bun build ./src/cli.ts --outdir dist --target=node --minify",
     "start": "node dist/cli.js",
     "prepublishOnly": "bun run build"
   },
