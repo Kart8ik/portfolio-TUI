@@ -10,16 +10,11 @@ npx shrikarthik
 
 …and the portfolio launches inside your terminal.
 
-
-![Screenshot of shrikarthik terminal portfolio](./image.png)
-
-
 Built with:
 
 * [React](https://react.dev)
 * [Ink](https://github.com/vadimdemedes/ink)
 
-Ik it’s a bit extra, but devs live in the terminal anyway so why not :)
 
 ![Screenshot of shrikarthik terminal portfolio](./image.png)
 
