@@ -2,6 +2,7 @@
   "name": "shrikarthik",
   "version": "1.0.4",
   "type": "module",
+  "license": "MIT",
   "bin": {
     "shrikarthik": "dist/cli.js"
   },
