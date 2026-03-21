@@ -15,8 +15,7 @@ Built with:
 * [React](https://react.dev)
 * [Ink](https://github.com/vadimdemedes/ink)
 
-
-![Screenshot of shrikarthik terminal portfolio](./image.png)
+![Screenshot of shrikarthik terminal portfolio](https://raw.githubusercontent.com/Kart8ik/portfolio-TUI/main/image.png)
 
 ---
 
